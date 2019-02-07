@@ -1,8 +1,8 @@
-import databases.AbstractDb;
-import databases.ApacheDerbyDb;
+import databasewriter.core.databases.AbstractDb;
+import databasewriter.core.databases.ApacheDerbyDb;
 import org.junit.*;
-import tables.unloadingprocesstable.TableRow;
-import tables.unloadingprocesstable.UnloadingProcessTable;
+import databasewriter.core.tables.unloadingprocesstable.TableRow;
+import databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable;
 
 import java.sql.SQLException;
 import java.util.List;

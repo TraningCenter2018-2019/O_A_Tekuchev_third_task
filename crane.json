@@ -1,1 +1,1 @@
-{"__type__":"simulationattributes.Crane","__mainObj__":"{\"number\":1,\"type\":\"bulkСarrier\",\"speed\":50}"}
+{"__type__":"libs.simulationattributes.Crane","__mainObj__":"{\"number\":1,\"type\":\"bulkСarrier\",\"speed\":50}"}

@@ -15,12 +15,7 @@
     <dependencies>
         <dependency>
             <groupId>ru.netcracker</groupId>
-            <artifactId>socketconnection</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>ru.netcracker</groupId>
-            <artifactId>simulation-attributes</artifactId>
+            <artifactId>applibraries</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -30,6 +25,33 @@
         </dependency>
     </dependencies>
 
-
-
+    <build>
+        <finalName>cargoport</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>
+                                        cargoportcomponent.MainCargoPort
+                                    </mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

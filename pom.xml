@@ -15,12 +15,10 @@
     </properties>
 
     <modules>
-        <module>filereader</module>
+        <module>filemonitor</module>
         <module>cargoport</module>
         <module>dbwriter</module>
-        <module>socketconnection</module>
-        <module>simulation-attributes</module>
-        <module>test-application</module>
+        <module>applibraries</module>
     </modules>
 
     <dependencies>

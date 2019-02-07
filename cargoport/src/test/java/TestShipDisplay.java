@@ -1,10 +1,10 @@
-import core.CargoPort;
+import cargoportcomponent.core.CargoPort;
 import org.junit.Before;
 import org.junit.Test;
-import simulationattributes.Crane;
-import simulationattributes.Ship;
-import simulationattributes.CargoTypes;
-import ui.UserInterface;
+import libs.simulationattributes.Crane;
+import libs.simulationattributes.Ship;
+import libs.simulationattributes.CargoTypes;
+import cargoportcomponent.ui.UserInterface;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

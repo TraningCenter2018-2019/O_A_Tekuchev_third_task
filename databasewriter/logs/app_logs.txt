@@ -1,0 +1,40 @@
+Feb 07, 2019 6:33:08 PM databasewriter.core.databases.AbstractDb <init>
+INFO: Connect to: jdbc:derby:memory:mydb;create=true
+Feb 07, 2019 6:33:09 PM databasewriter.core.databases.AbstractDb addTable
+INFO: Add table: CREATE TABLE unload_process (id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), crane_num int,ship_name varchar(30),init_mass int,curr_mass int)
+Feb 07, 2019 6:56:07 PM databasewriter.core.databases.AbstractDb <init>
+INFO: Connect to: jdbc:derby:memory:mydb;create=true
+Feb 07, 2019 6:56:08 PM databasewriter.core.databases.AbstractDb addTable
+INFO: Add table: CREATE TABLE unload_process (id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), crane_num int,ship_name varchar(30),init_mass int,curr_mass int)
+Feb 07, 2019 6:56:47 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:48 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:49 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:50 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:51 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:52 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:53 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:54 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:56 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:57 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:58 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:56:59 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:57:00 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:57:01 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:57:02 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
+Feb 07, 2019 6:57:03 PM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-c8ac-63a3-0000070b72f0
