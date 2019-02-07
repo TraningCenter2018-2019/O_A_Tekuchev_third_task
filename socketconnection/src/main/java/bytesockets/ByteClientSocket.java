@@ -2,9 +2,10 @@ package bytesockets;
 
 import bytesockets.requestresponseprocessors.ClientResponseProcessor;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.nio.ByteBuffer;
 
 public class ByteClientSocket implements ByteSocket {
   private Socket clientSocket;
@@ -19,12 +20,18 @@ public class ByteClientSocket implements ByteSocket {
     this.processor = processor;
   }
 
+  public ByteClientSocket(String ip, int port) throws IOException {
+    this(ip, port, null);
+  }
+
   public void sendMessage(byte[] data) throws IOException {
     outStream.write(getByteSize(data.length));
     outStream.write(data);
     int contentLength = readContentLength(inStream);
     byte[] response = new byte[contentLength];
-    processor.process(response);
+    if (processor != null) {
+      processor.process(response);
+    }
   }
 
   public boolean isConnected() {

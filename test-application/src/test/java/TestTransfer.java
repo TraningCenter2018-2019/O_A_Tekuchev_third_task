@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import simulationattributes.Ship;
-import simulationattributes.ShipTypes;
+import simulationattributes.CargoTypes;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -44,8 +44,8 @@ public class TestTransfer {
 
   private Ship getRandomShip() {
     int mass = random.nextInt(500);
-    ShipTypes type = ShipTypes.values()[random.nextInt(3)];
-    return new Ship(type, mass);
+    CargoTypes type = CargoTypes.values()[random.nextInt(3)];
+    return new Ship(type, mass, "aaaa");
   }
 
   @Before

@@ -15,6 +15,10 @@ public class ByteServerSocket extends Thread implements ByteSocket {
   private int port;
   private ServerRequestProcessor processor;
   private Thread thread;
+  private ServerSocket serverSocket;
+  private Socket clientSocket;
+  private OutputStream outStream;
+  private InputStream inStream;
 
   public ByteServerSocket(int port, ServerRequestProcessor processor) {
     this.port = port;
@@ -32,10 +36,10 @@ public class ByteServerSocket extends Thread implements ByteSocket {
   private void listen() throws IOException {
     try {
       setStopListen(false);
-      ServerSocket serverSocket = new ServerSocket(port);
-      Socket clientSocket = serverSocket.accept();
-      OutputStream outStream = clientSocket.getOutputStream();
-      InputStream inStream = clientSocket.getInputStream();
+      serverSocket = new ServerSocket(port);
+      clientSocket = serverSocket.accept();
+      outStream = clientSocket.getOutputStream();
+      inStream = clientSocket.getInputStream();
       while (!isStopListen()) {
         if (inStream.available() > 0) {
           int contentLength = readContentLength(inStream);
@@ -47,13 +51,15 @@ public class ByteServerSocket extends Thread implements ByteSocket {
         }
         Thread.sleep(threadSleep);
       }
+    }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+    finally {
       serverSocket.close();
       clientSocket.close();
       inStream.close();
       outStream.close();
-    }
-    catch (InterruptedException e) {
-      e.printStackTrace();
     }
   }
 
@@ -78,5 +84,6 @@ public class ByteServerSocket extends Thread implements ByteSocket {
 
   public void stopListen() {
     setStopListen(true);
+    //thread.interrupt();
   }
 }

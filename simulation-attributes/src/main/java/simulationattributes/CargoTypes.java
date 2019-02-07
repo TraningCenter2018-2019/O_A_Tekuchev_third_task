@@ -1,6 +1,6 @@
 package simulationattributes;
 
-public enum ShipTypes {
+public enum CargoTypes {
   bulkСarrier,
   containerShip,
   tanker
