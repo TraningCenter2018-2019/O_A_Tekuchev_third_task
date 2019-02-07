@@ -1,5 +1,5 @@
 import org.junit.Test;
-import tables.unloadingprocesstable.TableRow;
+import databasewriter.core.tables.unloadingprocesstable.TableRow;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
