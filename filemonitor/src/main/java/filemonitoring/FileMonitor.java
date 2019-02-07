@@ -8,6 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+/**
+ * Checks a directory for income files
+ */
 public class FileMonitor extends Thread {
   static private final int sleepTime = 350;
 
