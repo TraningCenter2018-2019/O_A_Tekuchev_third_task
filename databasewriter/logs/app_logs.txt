@@ -42,3 +42,65 @@ Feb 08, 2019 2:57:11 AM databasewriter.core.databases.AbstractDb <init>
 INFO: Connect to: jdbc:derby:memory:mydb;create=true
 Feb 08, 2019 2:57:13 AM databasewriter.core.databases.AbstractDb addTable
 INFO: Add table: CREATE TABLE unload_process (id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), crane_num int,ship_name varchar(30),init_mass int,curr_mass int)
+Feb 08, 2019 11:08:09 AM databasewriter.core.databases.AbstractDb <init>
+INFO: Connect to: jdbc:derby:memory:mydb;create=true
+Feb 08, 2019 11:08:10 AM databasewriter.core.databases.AbstractDb addTable
+INFO: Add table: CREATE TABLE unload_process (id int PRIMARY KEY GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), crane_num int,ship_name varchar(30),init_mass int,curr_mass int)
+Feb 08, 2019 11:08:10 AM databasewriter.contexts.DataWriterAppContext startApplication
+INFO: Start listen on 6667 port
+Feb 08, 2019 11:10:58 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:00 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:01 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:02 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:03 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:04 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:05 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:06 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:08 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:09 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:10 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:11 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:12 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:13 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:15 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:16 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:17 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:18 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:19 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:20 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:21 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:22 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:24 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:25 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:26 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:27 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:28 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8
+Feb 08, 2019 11:11:29 AM databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable insert
+INFO: 8f3600b1-0168-cc26-5136-0000070b32f8

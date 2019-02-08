@@ -19,6 +19,7 @@
         <module>cargoport</module>
         <module>dbwriter</module>
         <module>applibraries</module>
+        <module>create-files-utility</module>
     </modules>
 
     <dependencies>

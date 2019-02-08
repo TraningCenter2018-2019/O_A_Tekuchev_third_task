@@ -4,7 +4,7 @@ import libs.cmdargsparser.AbstractCommandLineArgsParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
-public class DataBaseCmdArgsParser extends AbstractCommandLineArgsParser {
+public class DataWriterCmdArgsParser extends AbstractCommandLineArgsParser {
   static public final String PORT_NAME = "port";
 
   @Override

@@ -1,36 +1,31 @@
 package databasewriter;
 
-import databasewriter.cla.DataBaseCmdArgsParser;
-import databasewriter.contexts.Context;
-import databasewriter.logging.DataWriterLoggerManager;
+import databasewriter.cla.DataWriterCmdArgsParser;
+import databasewriter.contexts.DataWriterAppContext;
 import org.apache.commons.cli.ParseException;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class MainDb {
   static public void main(String[] args) {
-    DataBaseCmdArgsParser dataBaseCmdArgsParser = new DataBaseCmdArgsParser();
+    DataWriterCmdArgsParser dataWriterCmdArgsParser = new DataWriterCmdArgsParser();
     try {
-      dataBaseCmdArgsParser.parse(args);
-      String strPort = dataBaseCmdArgsParser.getArgValue(DataBaseCmdArgsParser.PORT_NAME);
-      Context context;
+      dataWriterCmdArgsParser.parse(args);
+      if (dataWriterCmdArgsParser.hasFlag(DataWriterCmdArgsParser.HELP_NAME)) {
+        dataWriterCmdArgsParser.printHelp("The database writer");
+        return;
+      }
+      String strPort = dataWriterCmdArgsParser.getArgValue(DataWriterCmdArgsParser.PORT_NAME);
+      DataWriterAppContext context;
       if (strPort == null) {
-        System.out.println("Listen on default port" + Context.DEFAULT_PORT);
-        context = new Context(Context.DEFAULT_PORT);
+        context = new DataWriterAppContext(DataWriterAppContext.DEFAULT_PORT);
       }
       else {
         int port = Integer.valueOf(strPort);
-        context = new Context(port);
+        context = new DataWriterAppContext(port);
       }
       context.startApplication();
     }
     catch (ParseException | NumberFormatException exception) {
-      dataBaseCmdArgsParser.printHelp("database writer");
+      dataWriterCmdArgsParser.printHelp("The database writer");
     }
   }
 }

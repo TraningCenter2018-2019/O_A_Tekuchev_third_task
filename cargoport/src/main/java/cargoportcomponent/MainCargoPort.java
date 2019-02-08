@@ -4,7 +4,10 @@ import cargoportcomponent.cla.CargoPortCmdArgsParser;
 import cargoportcomponent.contexts.CargoPortAppContext;
 import cargoportcomponent.ui.CLI;
 import cargoportcomponent.ui.UserInterface;
+import cargoportcomponent.ui.pseudoGui.MainForm;
 import org.apache.commons.cli.ParseException;
+
+import java.io.IOException;
 
 public class MainCargoPort {
   static public void main(String[] args) {
@@ -15,7 +18,7 @@ public class MainCargoPort {
         cargoPortCmdArgsParser.printHelp("cargo port");
         return;
       }
-      UserInterface userInterface = new CLI();
+      UserInterface userInterface = new MainForm(CargoPortAppContext.COUNT_CRANES);
       CargoPortAppContext appContext;
       String strListenPort = cargoPortCmdArgsParser.getArgValue(CargoPortCmdArgsParser.LISTEN_PORT_NAME);
       int listenPort;

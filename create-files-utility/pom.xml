@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cargoport</artifactId>
+    <artifactId>create-files-utility</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -18,21 +18,10 @@
             <artifactId>applibraries</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>ru.netcracker</groupId>
-            <artifactId>dbwriter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.lanterna/lanterna -->
-        <dependency>
-            <groupId>com.googlecode.lanterna</groupId>
-            <artifactId>lanterna</artifactId>
-            <version>3.0.1</version>
-        </dependency>
     </dependencies>
 
     <build>
-        <finalName>cargoport</finalName>
+        <finalName>dbwriter</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,7 +36,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        cargoportcomponent.MainCargoPort
+
                                     </mainClass>
                                 </manifest>
                             </archive>
