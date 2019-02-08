@@ -32,8 +32,5 @@ public class MainDb {
     catch (ParseException | NumberFormatException exception) {
       dataBaseCmdArgsParser.printHelp("database writer");
     }
-    catch (SQLException e) {
-      DataWriterLoggerManager.getInstance().getLoggerApp().log(Level.SEVERE, e.getMessage());
-    }
   }
 }

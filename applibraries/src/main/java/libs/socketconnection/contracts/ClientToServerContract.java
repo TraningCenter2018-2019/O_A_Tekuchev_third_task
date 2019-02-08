@@ -1,35 +1,9 @@
 package libs.socketconnection.contracts;
 
-import java.io.*;
+public interface ClientToServerContract {
 
-public class ClientToServerContract implements Contract {
+  byte[] objectToBytes(Object object);
 
-  @Override
-  public byte[] objectToBytes(Object object) {
-    try (ByteArrayOutputStream out = new ByteArrayOutputStream();
-         ObjectOutputStream os = new ObjectOutputStream(out)) {
-      os.writeObject(object);
-      return out.toByteArray();
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
+  Object bytesToObject(byte[] bytes);
 
-  @Override
-  public Object bytesToObject(byte[] bytes) {
-    try (ByteArrayInputStream in = new ByteArrayInputStream(bytes);
-         ObjectInputStream is = new ObjectInputStream(in)) {
-      return is.readObject();
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-      return null;
-    }
-    catch (ClassNotFoundException e) {
-      e.printStackTrace();
-      return null;
-    }
-  }
 }

@@ -9,4 +9,6 @@ public interface UserInterface {
   void displayCrane(Crane crane);
 
   void displayCraneWork(Crane crane, Ship ship);
+
+  void deleteCrane(Crane crane);
 }

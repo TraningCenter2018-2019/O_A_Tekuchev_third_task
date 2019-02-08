@@ -33,7 +33,7 @@ public class ByteServerSocket extends Thread implements ByteSocket {
     this.stopListen = stopListen;
   }
 
-  private void listen() throws IOException {
+  private void listen() throws IOException, InterruptedException {
     try {
       setStopListen(false);
       serverSocket = new ServerSocket(port);
@@ -52,9 +52,6 @@ public class ByteServerSocket extends Thread implements ByteSocket {
         Thread.sleep(threadSleep);
       }
     }
-    catch (InterruptedException e) {
-      e.printStackTrace();
-    }
     finally {
       serverSocket.close();
       clientSocket.close();
@@ -71,6 +68,9 @@ public class ByteServerSocket extends Thread implements ByteSocket {
     catch (IOException e) {
       e.printStackTrace();
     }
+    catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 
   public void startListen() {
@@ -84,6 +84,5 @@ public class ByteServerSocket extends Thread implements ByteSocket {
 
   public void stopListen() {
     setStopListen(true);
-    //thread.interrupt();
   }
 }

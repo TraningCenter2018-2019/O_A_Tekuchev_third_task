@@ -3,6 +3,8 @@ package libs.cmdargsparser;
 import org.apache.commons.cli.*;
 
 public abstract class AbstractCommandLineArgsParser {
+  static public final String HELP_NAME = "help";
+
   private CommandLine commandLine;
   private CommandLineParser parser;
   private Options options;
@@ -10,6 +12,9 @@ public abstract class AbstractCommandLineArgsParser {
   public AbstractCommandLineArgsParser() {
     parser = createCommandLineParser();
     options = createOptions();
+    Option help =  new Option(HELP_NAME, false, "the help");
+    help.setRequired(false);
+    options.addOption(help);
   }
 
   protected Options getOptions() {
