@@ -1,6 +1,8 @@
 package cargoportcomponent.contexts;
 
 import cargoportcomponent.core.CargoPort;
+import cargoportcomponent.core.exceptions.MaxCountCranesException;
+import cargoportcomponent.core.exceptions.UniqueValueException;
 import cargoportcomponent.logging.CargoPortLoggerManager;
 import cargoportcomponent.ui.UserInterface;
 import libs.simulationattributes.Crane;
@@ -22,13 +24,14 @@ public class CargoPortAppContext {
   static public final int DEFAULT_LISTEN_PORT = 6666;
   static public final String DEFAULT_SEND_IP = "127.0.0.1";
   static public final int DEFAULT_SEND_PORT = 6667;
+  static public final int COUNT_CRANES = 3;
 
   //static private final String EXIT_KEY_WORD = "q";
 
   private int inputPort;
   private String outputIp;
   private int outputPort;
-
+  private UserInterface userInterface;
   private ClientToServerClientToServerContractSerializationImpl clientToServerContractSerializationImpl;
   private ServerToClientContract serverToClientContract;
   private ByteServerSocket serverSocket;
@@ -37,6 +40,7 @@ public class CargoPortAppContext {
 
   public CargoPortAppContext(int anInputPort, UserInterface ui, String anOutputIp, int anOutputPort) {
     try {
+      userInterface = ui;
       inputPort = anInputPort;
       outputIp = anOutputIp;
       outputPort = anOutputPort;
@@ -66,12 +70,29 @@ public class CargoPortAppContext {
       return serverToClientContract.sendOk();
     }
     else if (className.equals(Crane.class.getName())) {
-      cargoPort.addCrane((Crane) recievedObject);
-      return serverToClientContract.sendOk();
+      Crane crane = (Crane) recievedObject;
+      try  {
+        cargoPort.addCrane(crane);
+        return serverToClientContract.sendOk();
+      }
+      catch (UniqueValueException e) {
+        return serverToClientContract.sendError(ServerToClientContract.CANNOT_PERFORM_OPERATION,
+                "The crane with number " + crane.getNumber() + " is already exists");
+      }
+      catch (MaxCountCranesException e) {
+        return serverToClientContract.sendError(ServerToClientContract.CANNOT_PERFORM_OPERATION,
+                "The count of cranes is maximum");
+      }
     }
     else if (className.equals(DeleteCraneCommand.class.getName())) {
-      cargoPort.deleteCrane(((DeleteCraneCommand) recievedObject).getCraneNumber());
-      return serverToClientContract.sendOk();
+      int number = ((DeleteCraneCommand) recievedObject).getCraneNumber();
+      if (cargoPort.deleteCrane(number)) {
+        return serverToClientContract.sendOk();
+      }
+      else {
+        return serverToClientContract.sendError(ServerToClientContract.CANNOT_PERFORM_OPERATION,
+                "No crane with this number: " + number);
+      }
     }
     else {
       return serverToClientContract.sendError(ServerToClientContract.UNEXPECTED_SENT_DATA_CODE,
@@ -79,20 +100,13 @@ public class CargoPortAppContext {
     }
   }
 
-  /*private void waitToExit() {
-    Scanner scanner = new Scanner(System.in);
-    String answer;
-    while (!(answer = scanner.next()).equals(EXIT_KEY_WORD)) {
-      scanner.skip(".");
-    }
-  }*/
-
   public void startApplication() {
     try {
       serverSocket = new ByteServerSocket(inputPort, this::inputDataProcessor);
       cargoPort.startPort();
       serverSocket.startListen();
-      System.in.read();
+      userInterface.show();
+      //System.in.read();
     }
     catch (IOException e) {
       LOGGER.log(Level.SEVERE, e.getMessage());
@@ -101,8 +115,6 @@ public class CargoPortAppContext {
       serverSocket.stopListen();
       cargoPort.stopPort();
     }
-    /*System.out.println("To close application type: " + EXIT_KEY_WORD);
-    waitToExit();*/
   }
 
 }

@@ -4,6 +4,9 @@ import libs.cmdargsparser.AbstractCommandLineArgsParser;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
+/**
+ * Command line arguments parser for cargo port app
+ */
 public class CargoPortCmdArgsParser extends AbstractCommandLineArgsParser {
   static public final String LISTEN_PORT_NAME = "listenport";
   static public final String SEND_DATA_IP_NAME = "sendip";

@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Context {
+public class DataWriterAppContext {
   static private final Logger LOGGER = DataWriterLoggerManager.getInstance().getLoggerApp();
   static private final String DB_NAME = "mydb";
   static private final String TABLE_NAME = "unload_process";
@@ -26,7 +26,7 @@ public class Context {
   private ClientToServerContract clientToServerContractSerializationImpl;
   private int port;
 
-  public Context(int port) {
+  public DataWriterAppContext(int port) {
     this.port = port;
   }
 
@@ -55,7 +55,9 @@ public class Context {
       clientToServerContractSerializationImpl = new ClientToServerClientToServerContractSerializationImpl();
       ByteServerSocket serverSocket = new ByteServerSocket(port, this::inputDataProcessor);
       serverSocket.startListen();
-
+      String msg = "Start listen on " + port + " port";
+      System.out.println(msg);
+      LOGGER.log(Level.INFO, msg);
       System.in.read();
 
       serverSocket.stopListen();

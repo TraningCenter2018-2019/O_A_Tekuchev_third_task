@@ -43,6 +43,7 @@ public class FileMonitorAppContext {
 
       case ServerToClientContract.UNEXPECTED_SENT_DATA_CODE:
       case ServerToClientContract.INTERNAL_SERVER_ERROR_CODE:
+      case ServerToClientContract.CANNOT_PERFORM_OPERATION:
         LOGGER.log(Level.WARNING, serverToClientContract.getMessage(inputData));
         break;
 

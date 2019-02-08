@@ -7,6 +7,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * The logger manager for cargo port app
+ */
 public class CargoPortLoggerManager {
   private static CargoPortLoggerManager instance = null;
   private static Logger logger;
