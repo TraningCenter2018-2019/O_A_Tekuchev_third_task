@@ -1,37 +1,43 @@
 package filemonitorcomponent.filemonitoring;
 
+import filemonitorcomponent.logging.FileMonitorLoggerManager;
 import libs.parsers.jsonparsers.JsonConverter;
+import libs.parsers.jsonparsers.exceptions.InvalidJsonException;
+import libs.parsers.jsonparsers.exceptions.NoSuchClassException;
 import libs.socketconnection.bytesockets.ByteClientSocket;
-import libs.socketconnection.contracts.Contract;
+import libs.socketconnection.contracts.ClientToServerContract;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Checks a directory for income files
  */
 public class FileMonitor extends Thread {
+  static private Logger LOGGER = FileMonitorLoggerManager.getInstance().getLogger();
   static private final int sleepTime = 350;
 
   private File monitoredDir;
   private ByteClientSocket byteClientSocket;
   private boolean isStop = false;
-  private Contract clientToServerContract;
+  private ClientToServerContract clientToServerContract;
   private JsonConverter jsonConverter;
   private Thread thread;
 
   public FileMonitor(
           String dirName,
           ByteClientSocket sConnector,
-          Contract cToSContract,
+          ClientToServerContract cToSClientToServerContract,
           JsonConverter jConverter) {
     monitoredDir = new File(dirName);
     if (!monitoredDir.exists() || !monitoredDir.isDirectory()) {
       monitoredDir.mkdirs();
     }
     byteClientSocket = sConnector;
-    clientToServerContract = cToSContract;
+    clientToServerContract = cToSClientToServerContract;
     jsonConverter = jConverter;
   }
 
@@ -43,16 +49,22 @@ public class FileMonitor extends Thread {
     isStop = value;
   }
 
-  private void monitor() throws IOException {
+  private void monitor() {
     try {
+      setIsStop(false);
       while (!getIsStop()) {
         File[] listFiles = monitoredDir.listFiles();
         if (listFiles.length != 0) {
           for (File file : listFiles) {
             if (!file.isDirectory()) {
-              System.out.println(file.getName());
               String json = new String(Files.readAllBytes(file.toPath()));
-              Object fileObj = jsonConverter.jsonToObject(json);
+              Object fileObj = null;
+              try {
+                fileObj = jsonConverter.jsonToObject(json);
+              }
+              catch (NoSuchClassException | InvalidJsonException e) {
+                LOGGER.log(Level.WARNING, e.getMessage());
+              }
               byte[] objBytes = clientToServerContract.objectToBytes(fileObj);
               byteClientSocket.sendMessage(objBytes);
               boolean suc = file.delete();
@@ -64,8 +76,8 @@ public class FileMonitor extends Thread {
         }
       }
     }
-    catch (InterruptedException e) {
-      e.printStackTrace();
+    catch (InterruptedException | IOException e) {
+      LOGGER.log(Level.SEVERE, e.getMessage());
     }
   }
 
@@ -80,12 +92,7 @@ public class FileMonitor extends Thread {
 
   @Override
   public void run() {
-    try {
-      monitor();
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-    }
+    monitor();
   }
 
   public void stopMonitoring() {

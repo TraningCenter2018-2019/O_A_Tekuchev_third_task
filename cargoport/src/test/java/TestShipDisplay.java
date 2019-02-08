@@ -50,6 +50,11 @@ public class TestShipDisplay {
       public void displayCraneWork(Crane crane, Ship ship) {
 
       }
+
+      @Override
+      public void deleteCrane(Crane crane) {
+
+      }
     });
   }
 

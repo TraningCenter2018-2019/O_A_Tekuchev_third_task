@@ -6,8 +6,10 @@ import databasewriter.core.tables.unloadingprocesstable.TableRow;
 import databasewriter.core.tables.unloadingprocesstable.UnloadingProcessTable;
 import databasewriter.logging.DataWriterLoggerManager;
 import libs.socketconnection.bytesockets.ByteServerSocket;
+import libs.socketconnection.contracts.ClientToServerClientToServerContractSerializationImpl;
 import libs.socketconnection.contracts.ClientToServerContract;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,20 +23,16 @@ public class Context {
 
   private AbstractDb dataBase;
   private UnloadingProcessTable table;
-  private ClientToServerContract clientToServerContract;
+  private ClientToServerContract clientToServerContractSerializationImpl;
   private int port;
 
-  public Context(int port) throws SQLException {
-    dataBase = new ApacheDerbyDb(DB_NAME);
-    table = new UnloadingProcessTable(TABLE_NAME);
-    dataBase.addTable(table);
-    clientToServerContract = new ClientToServerContract();
+  public Context(int port) {
     this.port = port;
   }
 
   private byte[] inputDataProcessor(byte[] data) {
     try {
-      Object recievedObject = clientToServerContract.bytesToObject(data);
+      Object recievedObject = clientToServerContractSerializationImpl.bytesToObject(data);
       String className = recievedObject.getClass().getName();
       if (className.equals(TableRow.class.getName())) {
         table.insert((TableRow) recievedObject);
@@ -51,15 +49,18 @@ public class Context {
 
   public void startApplication() {
     try {
+      dataBase = new ApacheDerbyDb(DB_NAME);
+      table = new UnloadingProcessTable(TABLE_NAME);
+      dataBase.addTable(table);
+      clientToServerContractSerializationImpl = new ClientToServerClientToServerContractSerializationImpl();
       ByteServerSocket serverSocket = new ByteServerSocket(port, this::inputDataProcessor);
       serverSocket.startListen();
 
-      //System.in.read();
-      serverSocket.join();
+      System.in.read();
 
       serverSocket.stopListen();
     }
-    catch (InterruptedException e) {
+    catch (SQLException | IOException e) {
       LOGGER.log(Level.SEVERE, e.getMessage());
     }
   }

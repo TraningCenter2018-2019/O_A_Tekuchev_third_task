@@ -29,6 +29,7 @@ public class ByteClientSocket implements ByteSocket {
     outStream.write(data);
     int contentLength = readContentLength(inStream);
     byte[] response = new byte[contentLength];
+    inStream.read(response);
     if (processor != null) {
       processor.process(response);
     }

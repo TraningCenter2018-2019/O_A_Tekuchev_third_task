@@ -8,7 +8,7 @@ public class CargoPortCmdArgsParser extends AbstractCommandLineArgsParser {
   static public final String LISTEN_PORT_NAME = "listenport";
   static public final String SEND_DATA_IP_NAME = "sendip";
   static public final String SEND_DATA_PORT_NAME = "sendport";
-  static public final String HELP_NAME = "help";
+  static public final String NOT_SEND_NAME = "notsend";
 
   @Override
   protected Options createOptions() {
@@ -26,9 +26,10 @@ public class CargoPortCmdArgsParser extends AbstractCommandLineArgsParser {
     sendDataPort.setRequired(false);
     options.addOption(sendDataPort);
 
-    Option help =  new Option(HELP_NAME, false, "the help");
-    help.setRequired(false);
-    options.addOption(help);
+    Option notSend = new Option(NOT_SEND_NAME, false,
+            "flag indicates that unload statistics will not be sent to db server");
+    notSend.setRequired(false);
+    options.addOption(notSend);
 
     return options;
   }
