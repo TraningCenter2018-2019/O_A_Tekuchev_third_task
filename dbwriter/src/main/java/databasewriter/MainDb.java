@@ -10,7 +10,7 @@ public class MainDb {
     try {
       dataWriterCmdArgsParser.parse(args);
       if (dataWriterCmdArgsParser.hasFlag(DataWriterCmdArgsParser.HELP_NAME)) {
-        dataWriterCmdArgsParser.printHelp("The database writer");
+        dataWriterCmdArgsParser.printHelp(DataWriterCmdArgsParser.HELP_DESCRIPTION);
         return;
       }
       String strPort = dataWriterCmdArgsParser.getArgValue(DataWriterCmdArgsParser.PORT_NAME);
@@ -24,8 +24,11 @@ public class MainDb {
       }
       context.startApplication();
     }
-    catch (ParseException | NumberFormatException exception) {
-      dataWriterCmdArgsParser.printHelp("The database writer");
+    catch (ParseException exception) {
+      dataWriterCmdArgsParser.printHelp(DataWriterCmdArgsParser.HELP_DESCRIPTION);
+    }
+    catch (NumberFormatException exception) {
+      System.out.println("Invalid port");
     }
   }
 }

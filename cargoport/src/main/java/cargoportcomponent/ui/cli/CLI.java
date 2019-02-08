@@ -1,5 +1,6 @@
-package cargoportcomponent.ui;
+package cargoportcomponent.ui.cli;
 
+import cargoportcomponent.ui.UserInterface;
 import libs.simulationattributes.Crane;
 import libs.simulationattributes.Ship;
 
@@ -37,7 +38,7 @@ public class CLI implements UserInterface {
   }
 
   @Override
-  public void show() throws IOException {
-
+  public void startUi() throws IOException {
+    System.in.read();
   }
 }

@@ -13,10 +13,13 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * File monitor application context (the start point)
+ */
 public class FileMonitorAppContext {
   static private final Logger LOGGER = FileMonitorLoggerManager.getInstance().getLogger();
 
-  static public final String DEFAULT_SEND_IP = "127.0.0.1";
+  static public final String DEFAULT_SERVER_IP = "127.0.0.1";
   static public final int DEFAULT_PORT = 6666;
   static public final String DEFAULT_MONITORED_DIRECTORY = "./monitored_dir";
 
@@ -28,6 +31,13 @@ public class FileMonitorAppContext {
   private FileMonitor fileMonitor;
   private String monitoredDir;
 
+  /**
+   * A constructor
+   *
+   * @param anIp an ip te send files
+   * @param aPort a port
+   * @param aMonitoredDir a directory to monitor
+   */
   public FileMonitorAppContext(String anIp, int aPort, String aMonitoredDir) {
     ip = anIp;
     port = aPort;
@@ -36,6 +46,10 @@ public class FileMonitorAppContext {
     monitoredDir = aMonitoredDir;
   }
 
+  /**
+   * Handles server responses
+   * @param inputData
+   */
   private void responseHandler(byte[] inputData) {
     switch (inputData[0]) {
       case ServerToClientContract.OK_CODE:
@@ -53,13 +67,15 @@ public class FileMonitorAppContext {
     }
   }
 
+  /**
+   * The start of the app
+   */
   public void startApplication() {
     try {
       byteClientSocket = new ByteClientSocket(ip, port, this::responseHandler);
       fileMonitor = new FileMonitor(monitoredDir, byteClientSocket, clientToServerContract, new JsonConverter());
       fileMonitor.startMonitoring();
 
-      //fileMonitor.join();
       System.in.read();
 
       fileMonitor.stopMonitoring();

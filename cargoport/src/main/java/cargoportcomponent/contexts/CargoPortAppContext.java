@@ -22,11 +22,9 @@ public class CargoPortAppContext {
   static private final Logger LOGGER = CargoPortLoggerManager.getInstance().getLogger();
 
   static public final int DEFAULT_LISTEN_PORT = 6666;
-  static public final String DEFAULT_SEND_IP = "127.0.0.1";
-  static public final int DEFAULT_SEND_PORT = 6667;
-  static public final int COUNT_CRANES = 3;
-
-  //static private final String EXIT_KEY_WORD = "q";
+  static public final String DEFAULT_SERVER_IP = "127.0.0.1";
+  static public final int DEFAULT_SERVER_PORT = 6667;
+  static public final int MAX_COUNT_CRANES = 3;
 
   private int inputPort;
   private String outputIp;
@@ -47,10 +45,10 @@ public class CargoPortAppContext {
       clientToServerContractSerializationImpl = new ClientToServerClientToServerContractSerializationImpl();
       serverToClientContract = new ServerToClientByteImpl();
       if (anOutputIp != null) {
-        cargoPort = new CargoPort(3, ui, new ByteClientSocket(outputIp, outputPort), clientToServerContractSerializationImpl);
+        cargoPort = new CargoPort(MAX_COUNT_CRANES, ui, new ByteClientSocket(outputIp, outputPort), clientToServerContractSerializationImpl);
       }
       else {
-        cargoPort = new CargoPort(3, ui);
+        cargoPort = new CargoPort(MAX_COUNT_CRANES, ui);
       }
     }
     catch (IOException e) {
@@ -105,8 +103,7 @@ public class CargoPortAppContext {
       serverSocket = new ByteServerSocket(inputPort, this::inputDataProcessor);
       cargoPort.startPort();
       serverSocket.startListen();
-      userInterface.show();
-      //System.in.read();
+      userInterface.startUi();
     }
     catch (IOException e) {
       LOGGER.log(Level.SEVERE, e.getMessage());

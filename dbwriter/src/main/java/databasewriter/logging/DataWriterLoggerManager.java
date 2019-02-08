@@ -7,6 +7,9 @@ import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+/**
+ * The log manager for data writer application (singleton)
+ */
 public class DataWriterLoggerManager {
   private static  DataWriterLoggerManager instance = null;
   private static Logger loggerDb;

@@ -19,12 +19,12 @@ public class CreateFilesMain {
         cmdArgsParser.printHelp("File creater");
         return;
       }
-      String fileName = cmdArgsParser.getArgValue(CreateFileUtilityCmdArgsParser.FILE_NAME);
+      String fileName = cmdArgsParser.getArgValue(CreateFileUtilityCmdArgsParser.FILE);
       String directory = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.DIRECTORY) ?
               cmdArgsParser.getArgValue(CreateFileUtilityCmdArgsParser.DIRECTORY) : DEFAULT_DIRECTORY;
-      boolean shipFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.SHIP_NAME);
-      boolean craneFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.CRANE_NAME);
-      boolean delCraneFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.DEL_CRANE_NAME);
+      boolean shipFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.SHIP);
+      boolean craneFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.CRANE);
+      boolean delCraneFile = cmdArgsParser.hasFlag(CreateFileUtilityCmdArgsParser.DEL_CRANE);
       if (!shipFile && !craneFile && !delCraneFile) {
         System.out.println("You have to select what file to create");
         cmdArgsParser.printHelp("File creater");

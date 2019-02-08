@@ -2,6 +2,9 @@ package databasewriter.core.tables.unloadingprocesstable;
 
 import java.io.Serializable;
 
+/**
+ * Represent a table row
+ */
 public class TableRow implements Serializable {
   private int id;
   private int craneNumber;
@@ -11,6 +14,15 @@ public class TableRow implements Serializable {
 
   public TableRow() { }
 
+  /**
+   * A constructor
+   *
+   * @param anId the row id
+   * @param aCraneNum the crane number
+   * @param aShipName the ship name
+   * @param anInitMass the initial cargo mass
+   * @param aCurrMass the current cargo mass
+   */
   public TableRow(int anId, int aCraneNum, String aShipName, int anInitMass, int aCurrMass) {
     id = anId;
     craneNumber = aCraneNum;
@@ -63,6 +75,12 @@ public class TableRow implements Serializable {
     this.currentMass = currentMass;
   }
 
+  /**
+   * Equals rows by its content
+   *
+   * @param row the row to equal
+   * @return true if they are equal
+   */
   public boolean equalRows(TableRow row) {
     return row != null && id == row.getId() &&
             craneNumber == row.getCraneNumber() &&
@@ -71,6 +89,12 @@ public class TableRow implements Serializable {
             currentMass == row.getCurrentMass();
   }
 
+  /**
+   * Equals rows by its content without id
+   *
+   * @param row the row to equal
+   * @return true if they are equal
+   */
   public boolean equalRowsWithoutId(TableRow row) {
     return row != null && craneNumber == row.getCraneNumber() &&
             shipName.equals(row.getShipName()) &&
