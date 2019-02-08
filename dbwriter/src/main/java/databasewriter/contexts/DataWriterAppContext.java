@@ -14,6 +14,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * The database writer application context
+ */
 public class DataWriterAppContext {
   static private final Logger LOGGER = DataWriterLoggerManager.getInstance().getLoggerApp();
   static private final String DB_NAME = "mydb";
@@ -30,6 +33,12 @@ public class DataWriterAppContext {
     this.port = port;
   }
 
+  /**
+   * Handles data sent to the server
+   *
+   * @param data the clients data
+   * @return the response
+   */
   private byte[] inputDataProcessor(byte[] data) {
     try {
       Object recievedObject = clientToServerContractSerializationImpl.bytesToObject(data);
@@ -47,6 +56,9 @@ public class DataWriterAppContext {
     return new byte[1];
   }
 
+  /**
+   * The start of the app
+   */
   public void startApplication() {
     try {
       dataBase = new ApacheDerbyDb(DB_NAME);

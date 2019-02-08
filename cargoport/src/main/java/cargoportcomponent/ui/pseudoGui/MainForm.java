@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The main form of the pseudo graphical interface
+ */
 public class MainForm implements UserInterface {
 
   private final int COUNT_CRANES;
@@ -24,12 +27,17 @@ public class MainForm implements UserInterface {
 
   private List<Ship> ships = new LinkedList<>();
 
+  /**
+   * A constructor
+   *
+   * @param countCranes the count of cranes
+   */
   public MainForm(int countCranes) {
     COUNT_CRANES = countCranes;
   }
 
   @Override
-  public void show() throws IOException {
+  public void startUi() throws IOException {
     terminalFactory = new DefaultTerminalFactory();
     terminalFactory.setTerminalEmulatorFrameAutoCloseTrigger(TerminalEmulatorAutoCloseTrigger.CloseOnExitPrivateMode);
     screen = terminalFactory.createScreen();

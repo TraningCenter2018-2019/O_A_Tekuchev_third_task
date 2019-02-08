@@ -22,11 +22,18 @@ public class FileMonitor extends Thread {
 
   private File monitoredDir;
   private ByteClientSocket byteClientSocket;
-  private boolean isStop = false;
+  private boolean stop = false;
   private ClientToServerContract clientToServerContract;
   private JsonConverter jsonConverter;
   private Thread thread;
 
+  /**
+   *
+   * @param dirName the directory to monitor
+   * @param sConnector the socket to send data to a server
+   * @param cToSClientToServerContract the contract to send data to a server
+   * @param jConverter the converter to parse files to objects
+   */
   public FileMonitor(
           String dirName,
           ByteClientSocket sConnector,
@@ -41,18 +48,30 @@ public class FileMonitor extends Thread {
     jsonConverter = jConverter;
   }
 
-  private synchronized boolean getIsStop() {
-    return isStop;
+  /**
+   * Whether to to stop monitoring
+   *
+   * @return true if it is
+   */
+  private synchronized boolean IsStop() {
+    return stop;
   }
 
-  private synchronized void setIsStop(boolean value) {
-    isStop = value;
+  /**
+   *
+   * @param value
+   */
+  private synchronized void setStop(boolean value) {
+    stop = value;
   }
 
+  /**
+   * Start monitoring the directory
+   */
   private void monitor() {
     try {
-      setIsStop(false);
-      while (!getIsStop()) {
+      setStop(false);
+      while (!IsStop()) {
         File[] listFiles = monitoredDir.listFiles();
         if (listFiles.length != 0) {
           for (File file : listFiles) {
@@ -71,7 +90,7 @@ public class FileMonitor extends Thread {
             }
           }
         }
-        if (!getIsStop()) {
+        if (!IsStop()) {
           Thread.sleep(sleepTime);
         }
       }
@@ -81,10 +100,18 @@ public class FileMonitor extends Thread {
     }
   }
 
+  /**
+   * Gets current monitored directory
+   * @return
+   */
   public String getMonitoredDirectory() {
     return monitoredDir.getAbsolutePath();
   }
 
+  /**
+   * Starts monitoring the directory in separate thread
+   * @throws IOException
+   */
   public void startMonitoring() throws IOException {
     thread = new Thread(this);
     thread.start();
@@ -95,8 +122,11 @@ public class FileMonitor extends Thread {
     monitor();
   }
 
+  /**
+   * Stop monitoring
+   */
   public void stopMonitoring() {
-    setIsStop(true);
+    setStop(true);
   }
 
 }
