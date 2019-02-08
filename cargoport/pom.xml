@@ -18,12 +18,14 @@
             <artifactId>applibraries</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>ru.netcracker</groupId>
             <artifactId>dbwriter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.googlecode.lanterna/lanterna -->
+
+        <!-- Lanterna -->
         <dependency>
             <groupId>com.googlecode.lanterna</groupId>
             <artifactId>lanterna</artifactId>
@@ -32,7 +34,7 @@
     </dependencies>
 
     <build>
-        <finalName>cargoport</finalName>
+        <finalName>cargo_port</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

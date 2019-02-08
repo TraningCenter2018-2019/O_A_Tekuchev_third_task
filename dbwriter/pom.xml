@@ -28,7 +28,7 @@
     </dependencies>
 
     <build>
-        <finalName>dbwriter</finalName>
+        <finalName>db_writer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

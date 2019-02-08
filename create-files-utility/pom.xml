@@ -21,7 +21,7 @@
     </dependencies>
 
     <build>
-        <finalName>dbwriter</finalName>
+        <finalName>create_files_utility</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -36,7 +36,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-
+                                        createfilesutility.CreateFilesMain
                                     </mainClass>
                                 </manifest>
                             </archive>
